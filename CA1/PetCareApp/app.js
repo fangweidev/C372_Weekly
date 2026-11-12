@@ -17,6 +17,13 @@ app.use(session({
   saveUninitialized: true
 }));
 
+// MUST BE BEFORE app.use('/', require('./routes/...'))
+app.use(express.json());
+
+// Routes
+app.use('/', require('./routes/pageRoutes'));
+app.use('/', require('./routes/authRoutes'));
+app.use('/', require('./routes/paymentRoutes'));
 app.use('/', require('./routes/authRoutes'));
 app.use('/', require('./routes/pageRoutes'));
 app.use('/', require('./routes/adminRoutes'));

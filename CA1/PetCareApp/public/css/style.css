@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --sage: #B2B397;
+  --cream-bg: #F6F6F2;
+  --sand-input: #EAE8DA;
+  --olive: #7D7E46;
+  --olive-dark: #4A4B2F;
+  --terracotta: #D45B1A;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--cream-bg);
+  color: var(--olive-dark);
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--sage) !important;
+  box-shadow: 0 2px 10px rgba(74, 75, 47, 0.12);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  color: var(--terracotta) !important;
+  font-size: 1.35rem;
+}
+
+.navbar .nav-link {
+  color: var(--olive-dark) !important;
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+  color: var(--terracotta) !important;
+}
+
+/* Cards & Forms */
+.card,
+form[action="/login"],
+form[action="/signup"],
+form[action="/pets"],
+form[action^="/journals"] {
+  background: #ffffff;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(74, 75, 47, 0.07);
+}
+
+form[action="/login"],
+form[action="/signup"],
+form[action="/pets"],
+form[action^="/journals"] {
+  padding: 1.75rem;
+}
+
+/* Keep search & filter bars clean */
+form[action="/journals/search"],
+form[action="/journals"] {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Cream Filled Inputs (Petspot style) */
+.form-control,
+.form-select {
+  background-color: var(--sand-input);
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  padding: 0.6rem 0.9rem;
+  color: var(--olive-dark);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: #f3f1e6;
+  border-color: var(--terracotta);
+  box-shadow: none;
+}
+
+/* Pill Buttons (Terracotta & Olive) */
+.btn {
+  border-radius: 50px;
+  font-weight: 600;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  border: none;
+}
+
+.btn-primary,
+.btn-success {
+  background-color: var(--terracotta) !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+  background-color: #b84b12 !important;
+}
+
+.btn-secondary,
+.btn-outline-secondary,
+.btn-outline-primary,
+.btn-dark {
+  background-color: var(--olive) !important;
+  color: #ffffff !important;
+}
+
+.btn-warning {
+  background-color: var(--sand-input) !important;
+  color: var(--olive-dark) !important;
+}
+
+/* Tables */
+.table {
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(74, 75, 47, 0.06);
+}
+
+.table thead {
+  background-color: var(--sand-input) !important;
+  color: var(--olive-dark) !important;
+}
+
+.table thead th {
+  background-color: var(--sand-input) !important;
+  color: var(--olive-dark) !important;
+  border: none;
+}
+
+/* Pet Avatars */
+.img-thumbnail {
+  border-radius: 50%;
+  border: 4px solid var(--sand-input);
+  box-shadow: 0 4px 12px rgba(74, 75, 47, 0.12);
+}

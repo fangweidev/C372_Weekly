@@ -1,4 +1,5 @@
 const services = require('../data/mockServices');
+const MockProvider = require('../services/mockPaymentProvider');
 
 function preparePayment(req, res) {
   const service = services.find(
@@ -18,4 +19,43 @@ function preparePayment(req, res) {
   });
 }
 
-module.exports = { preparePayment };
+async function createMockPayment(req, res) {
+  const service = services.find(
+    (item) => String(item.id) === req.params.serviceId
+  );
+
+  if (!service) {
+    return res.status(404).json({ error: 'Service not found' });
+  }
+
+  const paymentRequest = {
+    amount: service.price,
+    currency: 'sgd',
+    merchantReference: 'SERVICE-' + service.id,
+    description: service.name,
+    testStatus: req.body?.testStatus
+  };
+
+  const providerResult = await MockProvider.createPayment(paymentRequest);
+
+  const statusMap = {
+    APPROVED: 'CONFIRMED',
+    PENDING: 'AWAITING_PAYMENT',
+    DECLINED: 'PAYMENT_FAILED'
+  };
+
+  const bookingStatus = statusMap[providerResult.status] || 'AWAITING_PAYMENT';
+
+  res.status(200).json({
+    serviceId: service.id,
+    providerPaymentId: providerResult.providerPaymentId,
+    merchantReference: providerResult.merchantReference,
+    paymentStatus: providerResult.status,
+    bookingStatus: bookingStatus
+  });
+}
+
+module.exports = {
+  preparePayment,
+  createMockPayment
+};
